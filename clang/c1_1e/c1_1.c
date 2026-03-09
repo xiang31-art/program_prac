@@ -13,7 +13,8 @@ typedef enum
 struct Game
 {
     char board[BOARD_SIZE][BOARD_SIZE];
-    
+    char PLAYER_X = "X";
+    char PLAYER_O = "O";
 };
 
 
