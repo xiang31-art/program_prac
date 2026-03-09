@@ -12,7 +12,8 @@ typedef enum
 
 struct Game
 {
-    char board[][]
+    char board[BOARD_SIZE][BOARD_SIZE];
+    
 };
 
 
