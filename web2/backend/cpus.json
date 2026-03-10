@@ -1,0 +1,203 @@
+[
+    {
+        "id" : 1,
+        "modelName" : "Core i5-4310M",
+        "generation" : 4,
+        "maker" : "Intel",
+        "grade" : "i5",
+        "cores" : 2,
+        "power" : 37,
+        "passmark" : 3048
+    },
+{
+        "id" : 2,
+        "modelName" : "Core i5-1135G7",
+        "generation" : 11,
+        "maker" : "Intel",
+        "grade" : "i5",
+        "cores" : 4,
+        "power" : 28,
+        "passmark" : 9383
+    },
+{
+        "id" : 3,
+        "modelName" : "Core i5-7500",
+        "generation" : 7,
+        "maker" : "Intel",
+        "grade" : "i5",
+        "cores" : 4,
+        "power" : 65,
+        "passmark" : 6032
+    },
+{
+        "id" : 4,
+        "modelName" : "Core i7-1355U",
+        "generation" : 13,
+        "maker" : "Intel",
+        "grade" : "i7",
+        "cores" : 10,
+        "power" : 55,
+        "passmark" : 14021
+    },
+{
+        "id" : 5,
+        "modelName" : "Core i5-1235U",
+        "generation" : 12,
+        "maker" : "Intel",
+        "grade" : "i5",
+        "cores" : 10,
+        "power" : 55,
+        "passmark" : 12640
+    },
+{
+        "id" : 6,
+        "modelName" : "Core i7-10750H",
+        "generation" : 10,
+        "maker" : "Intel",
+        "grade" : "i7",
+        "cores" : 6,
+        "power" : 45,
+        "passmark" : 11478
+    },
+{
+        "id" : 7,
+        "modelName" : "Ryzen 7 8700F",
+        "generation" : 8,
+        "maker" : "AMD",
+        "grade" : "Ryzen 7",
+        "cores" : 8,
+        "power" : 65,
+        "passmark" : 30863
+    },
+{
+        "id" : 8,
+        "modelName" :"Ryzen 3 3200G",
+        "generation" : 3,
+        "maker" : "AMD",
+        "grade" : "Ryzen 3",
+        "cores" : 4,
+        "power" : 65,
+        "passmark" : 6905
+    },
+{
+        "id" : 9,
+        "modelName" : "Ryzen 3 PRO 8300GE",
+        "generation" : 8,
+        "maker" : "AMD",
+        "grade" : "Ryzen 3",
+        "cores" : 4,
+        "power" : 35,
+        "passmark" : 14491
+    },
+{
+        "id" : 10,
+        "modelName" : "Ryzen 7 8840HX",
+        "generation" : 8,
+        "maker" : "AMD",
+        "grade" : "Ryzen 7",
+        "cores" : 12,
+        "power" : 55,
+        "passmark" :43283
+    },
+{
+        "id" : 11,
+        "modelName" : "Ryzen 7 PRO 5800H",
+        "generation" : 5,
+        "maker" : "AMD",
+        "grade" : "Ryzen 7",
+        "cores" : 8,
+        "power" : 45,
+        "passmark" : 19828
+    },
+{
+        "id" : 12,
+        "modelName" : "AMD Ryzen 7 7445HS",
+        "generation" : 7,
+        "maker" : "AMD",
+        "grade" : "Ryzen 7",
+        "cores" : 6,
+        "power" : 35,
+        "passmark" : 18975
+    },
+{
+        "id" : 13,
+        "modelName" : "AMD Ryzen 7 4800H",
+        "generation" : 4,
+        "maker" : "AMD",
+        "grade" : "Ryzen 7",
+        "cores" : 8,
+        "power" : 45,
+        "passmark" : 16929
+    },
+{
+        "id" : 14,
+        "modelName" : "AMD Ryzen 5 9500F",
+        "generation" : 9,
+        "maker" : "AMD",
+        "grade" : "Ryzen 5",
+        "cores" : 6,
+        "power" : 65,
+        "passmark" : 28262
+    },
+{
+        "id" : 15,
+        "modelName" : "AMD Ryzen 5 5500X3D",
+        "generation" : 5,
+        "maker" : "AMD",
+        "grade" : "Ryzen 5",
+        "cores" : 5,
+        "power" : 105,
+        "passmark" : 20335
+    },
+{
+        "id" : 16,
+        "modelName" : "AMD Ryzen 5 2600",
+        "generation" : 2,
+        "maker" : "AMD",
+        "grade" : "Ryzen 5",
+        "cores" : 6,
+        "power" : 65,
+        "passmark" : 13071
+    },
+{
+        "id" : 17,
+        "modelName" : "Core i7-14700HX",
+        "generation" : 14,
+        "maker" : "Intel",
+        "grade" : "i7",
+        "cores" : 20,
+        "power" : 55,
+        "passmark" : 36067
+    },
+{
+        "id" : 18,
+        "modelName" : "Core i7-6700HQ",
+        "generation" : 6,
+        "maker" : "Intel",
+        "grade" : "i7",
+        "cores" : 4,
+        "power" : 45,
+        "passmark" : 6523
+    },
+{
+        "id" : 19,
+        "modelName" : "Core i9-8950HK",
+        "generation" : 8,
+        "maker" : "Intel",
+        "grade" : "i9",
+        "cores" : 6,
+        "power" : 45,
+        "passmark" : 10375
+    },
+{
+        "id" : 20,
+        "modelName" : "Core i3-3217U",
+        "generation" : 3,
+        "maker" : "Intel",
+        "grade" : "i3",
+        "cores" : 2,
+        "power" : 17,
+        "passmark" :1228
+    }
+
+]
