@@ -27,3 +27,7 @@ header{
     align-items: center;
 }
 
+footer{
+    display: grid;
+    
+}
