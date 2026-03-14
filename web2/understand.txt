@@ -1,0 +1,16 @@
+HTML
+CSS
+
+JavaScript
+・appとapp.use、app.getの違い
+-appはc言語でいう構造体。useやgetは構造体のメンバ。
+-use、getは関数
+
+・モジュール読み込み
+-定数を宣言(const)
+-定数に機能を代入(=)
+　const fs = require('fs');
+-メンバ指定で関数使用(~~.get)
+　fs.readFileSync('./cpus.json', 'utf-8')
+
+・

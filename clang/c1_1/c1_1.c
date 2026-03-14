@@ -15,8 +15,17 @@ struct Game
     char board[BOARD_SIZE][BOARD_SIZE];
     char PLAYER_X = "X";
     char PLAYER_O = "O";
+    char CURRENT_PLAYER;
 };
 
+void print_display(){}
+void put_judge(){}
+void put_piece(){}
+void win_judge(){}
 
 
-int main
+int main{
+    Game game;
+
+
+}
