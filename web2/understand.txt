@@ -1,16 +1,39 @@
-HTML
-CSS
+#HTML
+#CSS
 
-JavaScript
-・appとapp.use、app.getの違い
+#JavaScript
+##appとapp.use、app.getの違い
 -appはc言語でいう構造体。useやgetは構造体のメンバ。
 -use、getは関数
 
-・モジュール読み込み
+##モジュール読み込み
 -定数を宣言(const)
 -定数に機能を代入(=)
 　const fs = require('fs');
 -メンバ指定で関数使用(~~.get)
 　fs.readFileSync('./cpus.json', 'utf-8')
 
-・
+##関数の説明
+app.get('/api/cpus/search',(req, res) => {
+    //処理
+});
+
+-ここでは2つの関数がある。また、関数の中に自作関数を書いている
+1.app.get() →Expressの関数。大きなくくりのため、最後に終了括弧がある。
+2.(req, res) => {} →自作関数。
+
+###app.get
+-app.get(URL, 実行内容)
+
+###自作関数
+-(第１引数, 第２引数) => {} という書き方。Cとは違い、型宣言が不要。
+
+##=>について
+-これは様々な記法があるが、やってることはどれも同じ。
+-引数 => 処理
+-cpu => cpu.id === id
+ 引数　|    処理     |
+
+-(req, res) => {};
+ 引数       |  処理
+ 

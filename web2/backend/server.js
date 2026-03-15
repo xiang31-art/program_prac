@@ -2,7 +2,6 @@
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
-const { resourceUsage } = require('process');
 
 //Expressアプリ作成
 const app = express();
@@ -13,12 +12,13 @@ app.use(cors());
 //JSONファイル読み込み
 const cpusData = JSON.parse(fs.readFileSync('./cpus.json', 'utf-8'));
 
-//エンドポイント:全県取得
+//エンドポイント:全件取得
 app.get('/api/cpus', (req, res) => {
     //cpuDataをそのまま返す
     res.json(cpusData);
 });
 
+//エンドポイント:検索・フィルター
 app.get('/api/cpus/search', (req, res) => {
     //クエリパラメータの取得
     const {keyword, maker, grade } = req.query;
@@ -33,13 +33,31 @@ app.get('/api/cpus/search', (req, res) => {
 
     //メーカーフィルター
     if (maker) {
-        results = results.filter(cpu => cpu.maker);
+        results = results.filter(cpu => cpu.maker === maker);
     }
 
     //グレードフィルター
     if (grade) {
-        results = results.filter(cpu => cpu.grade);
+        results = results.filter(cpu => cpu.grade === grade);
     }
 
     res.json(results);
+});
+
+//エンドポイント:詳細情報取得
+app.get('/api/cpus/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const cpu = cpusData.find(cpu => cpu.id === id);
+
+    if (cpu) {
+        res.json(cpu);
+    } else {
+        res.status(404).json({ error: 'CPU not found' });
+    }
+});
+
+//サーバー起動
+const PORT = 3001;
+app.listen(PORT, () =>{
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
