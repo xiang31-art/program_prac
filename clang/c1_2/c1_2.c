@@ -1,10 +1,3 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <stdbool.h>
 
-int main(void){
-    
-    
-    printf(input number: );
-
-
-    return 0;
-}
