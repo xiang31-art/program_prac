@@ -4,8 +4,7 @@
 #define BOARD_SIZE 8
 
 typedef enum {
-    PLAYER_BLACK,
-    PLAYER_WHITE,
+    GAME_PLAYING,
     GAME_WIN,
     GAME_DRAW
 } State;
@@ -36,16 +35,33 @@ int judgeWin();
 
 
 
-
+//main関数
 
 int main(void){
     Game gameMain;
+    bool test;
 
     initBoard(&gameMain);
     putFirst(&gameMain);
     printBoard(&gameMain);
 
-    
+    gameMain.currentPlayer = WHITE;
+    gameMain.board[4][2] = BLACK;
+    gameMain.board[4][1] = BLACK;
+
+    test = judgeBoard(4, 0, &gameMain); 
+    if (test == true){
+        printf("true\n");
+    }
+    else if (test == false){
+        printf("false\n");
+    }
+
+
+
+    printBoard(&gameMain);
+
+    return 0;
 }
 
 
@@ -96,7 +112,7 @@ bool judgeBoard(int nowX, int nowY, Game* game){
     int countStone = 0;
 
     //すでに置かれていないか
-    if (game->board != NONE){
+    if (game->board[x][y] != NONE){
         return false;
     }
     else{
@@ -104,11 +120,18 @@ bool judgeBoard(int nowX, int nowY, Game* game){
         for (int i = y; y != 0; y--){
             if (game->board[x][y] != game->currentPlayer){
                 countStone++;   //相手の色の個数カウント
+                printf("1\n");
             }
             else if(game->board[x][y] != game->currentPlayer){
                 flag++;       //同じ色の石があることを測定
-                //前回終了位置
+                printf("2\n");
             }
+        }
+
+        if (flag != 0){
+        printf("countStone = %d\n",countStone);
+        printf("flag = %d\n",flag);
+            return true;
         }
     }
 }
@@ -129,3 +152,19 @@ int judgeWin(){
 }
 
 //自作関数群end
+
+
+//余計に作ってしまったもの(盤面表示)
+/*
+    for (int x = 0; x < BOARD_SIZE; x++){
+        for (int y = 0; y < BOARD_SIZE; y++){
+            if (gameMain.board[x][y] == NONE)
+                printf(" NONE ");
+            if (gameMain.board[x][y] == BLACK)
+                printf("BLACK ");
+            if (gameMain.board[x][y] == WHITE)
+                printf("WHITE ");
+        }
+        printf("\n");
+    }
+*/
