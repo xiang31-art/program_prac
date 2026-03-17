@@ -36,4 +36,15 @@ app.get('/api/cpus/search',(req, res) => {
 
 -(req, res) => {};
  引数       |  処理
- 
+
+
+#React
+##
+
+#Web全般
+##クエリパラメータ
+-クエリパラメータとは、URLの末尾に？をつけた後にキーと値で指定する方式
+-複数指定の場合は＆を間に挟む
+-例:https://example.com?key1=value1&key2=value2
+
+##
