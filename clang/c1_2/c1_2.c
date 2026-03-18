@@ -20,13 +20,15 @@ typedef struct
     State game_State;
     char board[BOARD_SIZE][BOARD_SIZE];
     Color currentPlayer;
+    int cursX;
+    int cursY;
 } Game;
 
 
 //自作関数群(プロトタイプ宣言)
 void initBoard(Game* game);
-void putFirst(Game* game);
-void printBoard(Game* game);
+void printBoard(int nowX, int nowY, Game* game);
+void moveCursor(char Usel, Game* game);
 bool judgeBoard();
 void putStone();
 void flipStone();
@@ -39,17 +41,25 @@ int judgeWin();
 
 int main(void){
     Game gameMain;
+    gameMain.cursX = 0;
+    gameMain.cursY = 0;
+    char Uselect = ' ';
     bool test;
 
     initBoard(&gameMain);
-    putFirst(&gameMain);
-    printBoard(&gameMain);
 
-    gameMain.currentPlayer = WHITE;
-    gameMain.board[4][2] = BLACK;
-    gameMain.board[4][1] = BLACK;
+    //メインループ
+    while(1){
+        printBoard(gameMain.cursX, gameMain.cursY, &gameMain);
 
-    test = judgeBoard(4, 0, &gameMain); 
+        scanf("%c",&Uselect);
+        while (getchar() != '\n');
+
+        moveCursor(Uselect, &gameMain);
+
+        
+    }
+    test = judgeBoard(4, 4, &gameMain); 
     if (test == true){
         printf("true\n");
     }
@@ -57,9 +67,6 @@ int main(void){
         printf("false\n");
     }
 
-
-
-    printBoard(&gameMain);
 
     return 0;
 }
@@ -73,61 +80,111 @@ int main(void){
 void initBoard(Game* game){
     for (int x = 0; x < BOARD_SIZE; x++){
         for(int y = 0; y < BOARD_SIZE; y++){
-            game->board[x][y] = NONE;
+            game->board[y][x] = NONE;
         }
     }
-    return;
-}
 
-//初期配置
-void putFirst(Game* game){
     game->board[3][3] = WHITE;
     game->board[4][4] = WHITE;
     game->board[3][4] = BLACK;
     game->board[4][3] = BLACK;
+
     return;
 }
 
+
 //盤面表示
-void printBoard(Game* game){
-    for(int x = 0; x < BOARD_SIZE; x++){
-        for(int y = 0; y < BOARD_SIZE; y++){
-            if (game->board[x][y] == NONE)
+void printBoard(int nowX, int nowY, Game* game){
+     for(int y = 0; y < BOARD_SIZE; y++){
+        for(int x = 0; x < BOARD_SIZE; x++){
+            if (x == nowX && y == nowY)
+                printf(" + ");
+            else if (game->board[y][x] == NONE)
                 printf("・ ");
-            if (game->board[x][y] == BLACK)
-                printf("●  ");
-            if (game->board[x][y] == WHITE)
-                printf("○  ");
+            else if (game->board[y][x] == BLACK)
+                printf(" ● ");
+            else if (game->board[y][x] == WHITE)
+                printf(" ○ ");
         }
         printf("\n");
     }
     return;
 }
 
+//カーソル移動
+void moveCursor(char Usel, Game* game){
+if (Usel == 'w'){        //上
+            if (game->cursY > 0){
+                --game->cursY;
+            }
+            else{
+                printf("そこには移動できません1\n");
+            }
+        }
+        else if (Usel == 's'){   //下
+            if (game->cursY < 7){
+                ++game->cursY;
+            }
+            else{
+                printf("そこには移動できません2\n");
+            }
+        }
+        else if (Usel == 'a'){   //左
+            if (game->cursX > 0){
+                --game->cursX;
+            }
+            else{
+                printf("そこには移動できません3\n");
+            }
+        }
+        else if (Usel == 'd'){
+            if (game->cursX < 7){
+                ++game->cursX;
+            }
+            else{
+                printf("そこには移動できません4\n");
+            }
+        }        
+
+         printf("\n");
+}
+
+
 //配置可能判定
 bool judgeBoard(int nowX, int nowY, Game* game){
     int x = nowX;
     int y = nowY;
     int flag = 0;
+    int stopFlag = 0;   //味方の石を発見したら止めるため
     int countStone = 0;
 
     //すでに置かれていないか
-    if (game->board[x][y] != NONE){
+    if (game->board[y][x] != NONE){
+        printf("1\n");  //
         return false;
     }
     else{
         //上
-        for (int i = y; y != 0; y--){
-            if (game->board[x][y] != game->currentPlayer){
+        stopFlag = flag;    //判定停止用
+        printf("2\n");      //
+        for (y = nowY; y >= 0; y--){
+            printf("3\n");  //
+            printf("x=%d y =%d\n",x,y);
+            if (game->board[y][x] != game->currentPlayer){
                 countStone++;   //相手の色の個数カウント
-                printf("1\n");
+                printf("4\n");  //
             }
-            else if(game->board[x][y] != game->currentPlayer){
-                flag++;       //同じ色の石があることを測定
-                printf("2\n");
+            else if(game->board[y][x] != game->currentPlayer){
+                flag++;       //同じ色の石があることを認識
+                printf("5\n");  //
+            }
+
+            //同じ色の石があったら判定を停止
+            if (flag != stopFlag){
+                break;
             }
         }
-
+        printf("6\n");  //
         if (flag != 0){
         printf("countStone = %d\n",countStone);
         printf("flag = %d\n",flag);
@@ -158,11 +215,11 @@ int judgeWin(){
 /*
     for (int x = 0; x < BOARD_SIZE; x++){
         for (int y = 0; y < BOARD_SIZE; y++){
-            if (gameMain.board[x][y] == NONE)
+            if (gameMain.board[y][x] == NONE)
                 printf(" NONE ");
-            if (gameMain.board[x][y] == BLACK)
+            if (gameMain.board[y][x] == BLACK)
                 printf("BLACK ");
-            if (gameMain.board[x][y] == WHITE)
+            if (gameMain.board[y][x] == WHITE)
                 printf("WHITE ");
         }
         printf("\n");
