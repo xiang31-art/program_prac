@@ -28,7 +28,7 @@ app.get('/api/cpus/search', (req, res) => {
 
     //キーワード検索
     if (keyword) {
-        results = results.filter(cpu => cpu.modelName.toLowerCase().includes(keyword));
+        results = results.filter(cpu => cpu.modelName.toLowerCase().includes(keyword.toLowerCase()));
     }
 
     //メーカーフィルター

@@ -32,7 +32,7 @@ void printBoard(Game* game);
 void checkBoard(Game* game);
 void moveCursor(char Usel, Game* game);
 bool judgeBoard(Game* game);
-void putStone(Game* game);
+bool putStone(Game* game);
 void flipStone();
 void judgeWin(Game* game);
 //自作関数群end
@@ -49,23 +49,33 @@ int main(void){
     bool test;
 
     initBoard(&gameMain);
+    printBoard(&gameMain);
 
     //メインループ
     while(1){
-        printBoard(&gameMain);
 
         scanf("%c",&Uselect);
         while (getchar() != '\n');
+        printf("\n\n\n\n");
 
         if (Uselect != ' '){
             moveCursor(Uselect, &gameMain);
         }
         else if (Uselect == ' '){
-            putStone(&gameMain);
-        }
-        
+            if (putStone(&gameMain) == true){
+                //プレイヤー交代
+                if (gameMain.currentPlayer == BLACK){
+                gameMain.currentPlayer = WHITE;
+                }
+                else if (gameMain.currentPlayer == WHITE){
+                    gameMain.currentPlayer = BLACK;
+                }
+            }
 
-        
+            
+        }
+        printBoard(&gameMain);
+
     }
     //メインループ終了
 
@@ -99,13 +109,13 @@ void printBoard(Game* game){
      for(int y = 0; y < BOARD_SIZE; y++){
         for(int x = 0; x < BOARD_SIZE; x++){
             if (x == game->cursX && y == game->cursY)
-                printf(" + ");
+                printf("+  ");
             else if (game->board[y][x] == NONE)
                 printf("・ ");
             else if (game->board[y][x] == BLACK)
-                printf(" ● ");
+                printf("●  ");
             else if (game->board[y][x] == WHITE)
-                printf(" ○ ");
+                printf("○  ");
         }
         printf("\n");
     }
@@ -115,7 +125,7 @@ void printBoard(Game* game){
 
 //盤面チェック
 void checkBoard(Game* game){
-    
+
 }
 
 
@@ -126,7 +136,7 @@ void moveCursor(char Usel, Game* game){
             --game->cursY;
         }
         else{
-            printf("そこには移動できません1\n");
+            printf("そこには移動できません\n");
         }
     }
     else if (Usel == 's'){   //下
@@ -134,7 +144,7 @@ void moveCursor(char Usel, Game* game){
             ++game->cursY;
         }
         else{
-            printf("そこには移動できません2\n");
+            printf("そこには移動できません\n");
         }
     }
     else if (Usel == 'a'){   //左
@@ -142,7 +152,7 @@ void moveCursor(char Usel, Game* game){
             --game->cursX;
         }
         else{
-            printf("そこには移動できません3\n");
+            printf("そこには移動できません\n");
         }
     }
     else if (Usel == 'd'){
@@ -150,7 +160,7 @@ void moveCursor(char Usel, Game* game){
             ++game->cursX;
         }
         else{
-            printf("そこには移動できません4\n");
+            printf("そこには移動できません\n");
         }
     }
 
@@ -206,18 +216,24 @@ bool judgeBoard(Game* game){
 
 
 //配置
-void putStone(Game* game){
+bool putStone(Game* game){
     int x = game->cursX;
     int y = game->cursY;
 
-    if (game->currentPlayer == BLACK){
-        game->board[y][x] = BLACK;
+    if (game->board[y][x] != NONE){
+        printf("そこには置けません\n");
+        return false;
     }
-    else if (game->currentPlayer == WHITE){
-        game->board[y][x] =WHITE;
+    else {
+        if (game->currentPlayer == BLACK){
+            game->board[y][x] = BLACK;
+       }
+        else if (game->currentPlayer == WHITE){
+            game->board[y][x] =WHITE;
+        }
     }
 
-    return;
+    return true;
 }
 
 
