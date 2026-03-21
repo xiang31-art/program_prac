@@ -58,17 +58,20 @@ int main(void){
         while (getchar() != '\n');
         printf("\n\n\n\n");
 
+        //配置のコマンドか判定
         if (Uselect != ' '){
             moveCursor(Uselect, &gameMain);
         }
         else if (Uselect == ' '){
-            if (putStone(&gameMain) == true){
-                //プレイヤー交代
-                if (gameMain.currentPlayer == BLACK){
-                gameMain.currentPlayer = WHITE;
-                }
-                else if (gameMain.currentPlayer == WHITE){
-                    gameMain.currentPlayer = BLACK;
+            if (judgeBoard(&gameMain) == true){
+                if (putStone(&gameMain) == true){
+                    //プレイヤー交代
+                    if (gameMain.currentPlayer == BLACK){
+                        gameMain.currentPlayer = WHITE;
+                    }
+                    else if (gameMain.currentPlayer == WHITE){
+                        gameMain.currentPlayer = BLACK;
+                    }
                 }
             }
 
@@ -174,7 +177,6 @@ bool judgeBoard(Game* game){
     int x = game->cursX;
     int y = game->cursY;
     int flag = 0;
-    int stopFlag = 0;   //味方の石を発見したら止めるため
     int countStone = 0;
 
     //すでに置かれていないか
@@ -184,24 +186,24 @@ bool judgeBoard(Game* game){
     }
     else{
         //上
-        stopFlag = flag;    //判定停止用
+        
         printf("2\n");      //debug
-        for (y = game->cursY; y >= 0; y--){
+        for (y = game->cursY - 1; y >= 0; y--){
             printf("3\n");  //debug
             printf("x=%d y =%d\n",x,y);
-            if (game->board[y][x] != game->currentPlayer){
+            if (game->board[y][x] == NONE){
+                break;
+            }
+            else if (game->board[y][x] != game->currentPlayer){
                 countStone++;   //相手の色の個数カウント
                 printf("4\n");  //debug
             }
-            else if(game->board[y][x] != game->currentPlayer){
+            else if(game->board[y][x] == game->currentPlayer && countStone != 0){
                 flag++;       //同じ色の石があることを認識
                 printf("5\n");  //debug
             }
 
-            //同じ色の石があったら判定を停止
-            if (flag != stopFlag){
-                break;
-            }
+            
         }
         printf("6\n");  //debug
         if (flag != 0){
@@ -211,7 +213,7 @@ bool judgeBoard(Game* game){
         }
     }
 
-    return true;    //debug
+    return false;    //debug
 }
 
 
@@ -249,7 +251,7 @@ void judgeWin(Game* game){
     int countBlack = 0;
 
     for (int y = 0; y < BOARD_SIZE; y++){
-        for (int x = 0; x < BOARD_SIZE; x--){
+        for (int x = 0; x < BOARD_SIZE; x++){
             if (game->board[y][x] == BLACK){
                 countBlack++;
             }
