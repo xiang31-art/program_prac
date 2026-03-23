@@ -44,6 +44,10 @@
 -処理
 1.表示
 
+###現在プレイヤー表示
+-void showCurrentPlayer(Game *game)
+-何気に回数多かった
+
 ###盤面チェック
 -void checkBoard
 -考える：プレイできないのはどんな状況か？
