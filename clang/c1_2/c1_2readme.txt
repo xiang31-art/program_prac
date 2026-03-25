@@ -100,6 +100,12 @@ stopFlag = flag;    //判定停止用
             }
 
 
+###プレイヤー交代
+-void changePlayer
+
+
+
+
 ###勝利判定
 -int judgeWin
 -処理
