@@ -2,7 +2,7 @@
 #include <stdbool.h>
 
 //偶数のみ変更可能
-#define BOARD_SIZE 8
+#define BOARD_SIZE 20
 #define FLIP_MAX (BOARD_SIZE - 2)
 
 typedef enum {
@@ -232,7 +232,7 @@ void moveCursor(char Usel, Game *game){
     else if (Usel == 'D'){
         game->cursX = BOARD_SIZE - 1;
     }
-    else if (Usel == 'T'){
+    else if (Usel == '+'){
         cheatFlipAll(game);
     }
      return;
