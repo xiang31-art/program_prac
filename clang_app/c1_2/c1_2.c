@@ -2,7 +2,7 @@
 #include <stdbool.h>
 
 //偶数のみ変更可能
-#define BOARD_SIZE 20
+#define BOARD_SIZE 8
 #define FLIP_MAX (BOARD_SIZE - 2)
 
 typedef enum {

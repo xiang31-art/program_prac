@@ -1,15 +1,31 @@
-function text(text) {
-    const textmain = "zram-generator.conf"
+// ===== 簡易カウンター =====
 
-    if (textmain === text) {
-        return "true";
-    }
-    return "false";
+let count = 0;  //グローバル変数によってどの関数でも変更可
+
+function increment() {
+    count++;    //インクリメント処理
+    console.log(`カウントアップ → ${count}`);   //結果表示
 }
 
-function run() {
-    const result = text("zram-generator.conf");
-    console.log(result);
+function decrement() {
+    count--;    //デクリメント処理
+    console.log(`カウントダウン → ${count}`);   //結果表示
 }
 
-run();
+function reset() {
+    count = 0;  //0にリセット
+    console.log(`リセット → ${count}`);         //結果表示
+}
+
+function showCount() {
+    console.log(`現在のカウント：${count}`);    //現在の状況表示
+}
+
+//動作チェック
+showCount();
+increment();
+increment();
+decrement();
+increment();
+reset();
+showCount();
