@@ -24,23 +24,23 @@ void count_score(Game* game);
 
 int main(void){
     Game gameMain;
-    char Uselect = " ";
+    char Uselect;
 
-    initBoard(&gameMain);
+    init_board(&gameMain);
 
     printf("--- CLI2048 ---\n");
     while(1){
         //debug
-        gameMain.board[2][3] = 23;
+        gameMain.board[2][3] = 2;
         gameMain.board[0][2] = 2;
 
-        printBoard(&gameMain);
+        print_board(&gameMain);
         
         printf("input: ");
         scanf("%c",&Uselect);
         while(getchar() != '\n');
 
-        scratchBoard(&gameMain);
+        scratch_board(&gameMain);
 
     }
 }
@@ -56,6 +56,7 @@ void init_board(Game* game){
     return;
 }
 
+/*
 //盤面チェック(プレイできるか)
 bool can_play(Game* game){
     int countEmpty = 0;
@@ -68,19 +69,29 @@ bool can_play(Game* game){
     }
 
     if (countEmpty == 0){
-        return true;
+        ;
     }
 }
+*/
 
+/*
 //結果表示
 void show_result(Game* game){
 
 }
+*/
 
 //盤面表示
 void print_board(Game* game){
-
+    for (int y = 0; y < BOARD_SIZE; y++){
+        for (int x = 0; x < BOARD_SIZE; x++){
+            printf("[%d]",game->board[y][x]);
+        }
+        printf("--------------------/n");
+    }
+    return;
 }
+
 
 //数生成
 void generate_number(Game* game){
